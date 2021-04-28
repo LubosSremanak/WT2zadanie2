@@ -1,0 +1,56 @@
+<div class="add-medal">
+  <h1>Add medal</h1>
+  <div class="add-section">
+    <button [routerLink]="''" class="return" color="primary" mat-icon-button mat-raised-button>
+      <mat-icon>
+        keyboard_return
+      </mat-icon>
+    </button>
+
+    <div class="form">
+      <form (ngSubmit)="onSubmit(data)" [formGroup]="data" name="contact">
+        <div class="form-field">
+          <mat-form-field appearance="fill">
+            <mat-label>Discipline</mat-label>
+            <label>
+              <input formControlName="discipline" matInput name="discipline" required type="text"/>
+            </label>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Medal</mat-label>
+            <label>
+              <input formControlName="medal"
+                     matInput
+                     name="medal" required type="number"/>
+            </label>
+          </mat-form-field>
+        </div>
+        <div class="form-field">
+          <mat-form-field appearance="fill">
+            <mat-label>Select olympic</mat-label>
+            <mat-select formControlName="olympian">
+              <mat-option *ngFor="let olympic of this.olympians"
+                          [value]="olympic.id">{{olympic.name}} {{olympic.surname}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Select Olympic Games</mat-label>
+            <mat-select formControlName="olympicGames">
+              <mat-option *ngFor="let olympicGames of this.olympicGames" [value]="olympicGames.id">
+                {{olympicGames.type}}, {{olympicGames.country}}, {{olympicGames.place}}, {{olympicGames.year}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="submit-field">
+          <button class="submit-button" color="primary" mat-raised-button type="submit">Add</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+</div>
+

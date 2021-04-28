@@ -1,0 +1,107 @@
+<div class="form">
+  <form (ngSubmit)="onSubmit(data)" [formGroup]="data" name="contact">
+    <div class="form-field">
+      <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <label>
+          <input formControlName="name" matInput name="name" required type="text"/>
+        </label>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Surname</mat-label>
+        <label>
+          <input formControlName="surname"
+                 matInput
+                 name="surname" required type="text"/>
+        </label>
+      </mat-form-field>
+    </div>
+
+    <div class="form-field">
+      <mat-form-field appearance="fill">
+        <mat-label>Birth date</mat-label>
+        <label>
+          <input formControlName="birthDay"
+                 matInput
+                 name="birthDay" required type="date"/>
+        </label>
+      </mat-form-field>
+    </div>
+
+    <div class="form-field">
+      <mat-form-field appearance="fill">
+        <mat-label>Birth place</mat-label>
+        <label>
+          <input formControlName="birthPlace"
+                 matInput
+                 name="birthPlace" required type="text"/>
+        </label>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Birth country</mat-label>
+        <label>
+          <input formControlName="birthCountry"
+                 matInput
+                 name="birthCountry" required type="text"/>
+        </label>
+      </mat-form-field>
+    </div>
+
+    <div class="form-field">
+      <mat-checkbox #isDead class="checkbox" color="primary">Dead</mat-checkbox>
+    </div>
+    <div *ngIf="isDead.checked">
+      <div class="form-field">
+        <mat-form-field appearance="fill">
+          <mat-label>Death date</mat-label>
+          <label>
+            <input formControlName="deathDay"
+                   matInput
+                   name="deathDay" type="date"/>
+          </label>
+        </mat-form-field>
+      </div>
+
+      <div class="form-field">
+        <mat-form-field appearance="fill">
+          <mat-label>Death place</mat-label>
+          <label>
+            <input formControlName="deathPlace"
+                   matInput
+                   name="deathPlace" type="text"/>
+          </label>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Death country</mat-label>
+          <label>
+            <input formControlName="deathCountry"
+                   matInput
+                   name="deathCountry" type="text"/>
+          </label>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="submit-field">
+      <button *ngIf="edit" class="submit-button" color="primary" mat-raised-button type="submit">Edit</button>
+      <button *ngIf="!edit" class="submit-button" color="primary" mat-raised-button type="submit">Add</button>
+    </div>
+
+
+  </form>
+
+  <div *ngIf="edit">
+    <div *ngFor="let place of this.oldData[0].placing" class="form-field placing-content">
+      <span>{{this.formattedMedal(place.medal)}}</span><span>&nbsp;v disciplíne&nbsp;</span>
+      <span>{{place.discipline}}</span><span>&nbsp;na&nbsp;</span>
+      <span>{{place.type}}</span><span>,&nbsp;</span>
+      <span>{{place.city}}</span><span>,&nbsp;</span>
+      <span>{{place.country}}</span><span>&nbsp;v roku&nbsp;</span>
+      <span>{{place.year}}</span>
+      <button (click)="deletePlace(place.id)" mat-icon-button>
+        <mat-icon>delete</mat-icon>
+      </button>
+
+    </div>
+  </div>
+</div>
+

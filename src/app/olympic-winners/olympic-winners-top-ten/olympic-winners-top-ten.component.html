@@ -1,0 +1,85 @@
+<div class="table-container mat-elevation-z8">
+  <mat-fab-menu (onFabMenuItemSelected)="openPageFromMenu($event)" [fabButtons]="fabButtonsMenu"
+                class="fab-menu"
+                color="primary" direction="right">
+  </mat-fab-menu>
+  <table [dataSource]="dataSource" id="olympians-table" mat-table multiTemplateDataRows>
+    <ng-container matColumnDef="avatar">
+      <th *matHeaderCellDef mat-header-cell></th>
+      <td (click)="expandedElement = expandedElement === olympian? null :olympian;"
+          *matCellDef="let olympian "
+          mat-cell>
+        <img *ngIf="!isWoman(olympian.name)" alt="avatar" src="assets/images/user.png">
+        <img *ngIf="isWoman(olympian.name)" alt="avatar" src="assets/images/woman.png">
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th *matHeaderCellDef mat-header-cell>Name</th>
+      <td (click)="expandedElement = expandedElement === olympian? null :olympian;"
+          *matCellDef="let olympian " mat-cell> {{olympian.name}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="surname">
+      <th *matHeaderCellDef mat-header-cell>Surname</th>
+      <td (click)="expandedElement = expandedElement === olympian? null :olympian;" *matCellDef="let olympian"
+          mat-cell>{{olympian.surname}}</td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="birthPlace">
+      <th *matHeaderCellDef mat-header-cell>Place of birth</th>
+      <td (click)="expandedElement = expandedElement === olympian? null :olympian;" *matCellDef="let olympian"
+          mat-cell>{{olympian.birthPlace}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="goldMedals">
+      <th *matHeaderCellDef mat-header-cell>Gold medals</th>
+      <td (click)="expandedElement = expandedElement === olympian? null :olympian;" *matCellDef="let olympian"
+          mat-cell>{{olympian.goldMedals}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="edit">
+      <th *matHeaderCellDef mat-header-cell>Edit</th>
+      <td *matCellDef="let olympian" mat-cell>
+        <button [routerLink]="['editOlympian', olympian.id]" aria-label="edit" color="primary" mat-mini-fab>
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="delete">
+      <th *matHeaderCellDef mat-header-cell>Delete</th>
+      <td *matCellDef="let olympian" mat-cell>
+        <button (click)=" openDialog(olympian.id)" aria-label="delete" class="row-button" color="primary"
+                mat-mini-fab>
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="expandedDetail">
+      <td *matCellDef="let element" [attr.colspan]="displayedColumns.length"
+          mat-cell>
+        <div [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'"
+             class="element-detail">
+          <div *ngIf="element == expandedElement ">
+            <app-olympic-winner-detail [animationState]="element == expandedElement ? 'expanded' : 'collapsed'"
+                                       [id]="element.id">
+            </app-olympic-winner-detail>
+          </div>
+        </div>
+      </td>
+    </ng-container>
+    <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+    <tr
+      *matRowDef="let element; columns: displayedColumns;"
+      [class.expanded-row]="expandedElement === element"
+      [hidden]="expandedElement === element"
+      class="element-row"
+      mat-row>
+    </tr>
+    <tr *matRowDef="let row; columns: ['expandedDetail']" class="row detail-row" mat-row></tr>
+  </table>
+</div>
+

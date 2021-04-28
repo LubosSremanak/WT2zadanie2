@@ -1,0 +1,9 @@
+#olympians-table-tab-group {
+}
+
+.tab-center {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}

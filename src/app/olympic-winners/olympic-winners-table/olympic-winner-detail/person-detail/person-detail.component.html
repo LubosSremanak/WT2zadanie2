@@ -1,0 +1,47 @@
+<mat-card [@detailExpand]="animationState" class="card">
+  <mat-card-header>
+    <div *ngIf="!isWoman(this.olympicDetail.name)" class="header-image-men" mat-card-avatar></div>
+    <div *ngIf="isWoman(this.olympicDetail.name)" class="header-image-women" mat-card-avatar></div>
+    <mat-card-title>{{this.olympicDetail.name}}&nbsp;{{this.olympicDetail.surname}}</mat-card-title>
+    <mat-card-subtitle>
+      <div class="info-life"><img class="lifeIcon" alt="life"
+                                  src="assets/images/life.png">
+        {{this.olympicDetail.birthDay}},&nbsp;{{this.olympicDetail.birthPlace}}
+        ,&nbsp;{{this.olympicDetail.birthCountry}}</div>
+      <div class="info-life" *ngIf="this.olympicDetail.deathDay">
+        <img class="lifeIcon" alt="life"
+             *ngIf="this.olympicDetail.deathDay" src="assets/images/cross.png">{{this.olympicDetail.deathDay}},&nbsp;
+        {{this.olympicDetail.deathPlace}},&nbsp;{{this.olympicDetail.deathCountry}}
+      </div>
+    </mat-card-subtitle>
+
+  </mat-card-header>
+  <div class="card-side-content">
+    <div class="avatar-container">
+      <img class="avatar" *ngIf="!isWoman(this.olympicDetail.name)" alt="avatar" src="assets/images/userBig.png">
+      <img class="avatar" *ngIf="isWoman(this.olympicDetail.name)" alt="avatar" src="assets/images/womanBig.png">
+      <mat-card-subtitle>
+        <div class="info-life">
+
+        </div>
+
+      </mat-card-subtitle>
+
+    </div>
+
+    <div class=" placing">
+      <mat-card-title>
+        Placing <img alt="neco" height="64" id="placing-medal" src="assets/images/medal.png" width="64"/>
+      </mat-card-title>
+      <div *ngFor="let place of this.olympicDetail[0].placing" class="placing-content">
+        <span>{{this.formattedMedal(place.medal)}}</span><span>&nbsp;v disciplíne&nbsp;</span>
+        <span>{{place.discipline}}</span><span>&nbsp;na&nbsp;</span>
+        <span>{{place.type}}</span><span>,&nbsp;</span>
+        <span>{{place.city}}</span><span>,&nbsp;</span>
+        <span>{{place.country}}</span><span>&nbsp;v roku&nbsp;</span>
+        <span>{{place.year}}</span>
+      </div>
+      <br>
+    </div>
+  </div>
+</mat-card>

@@ -1,0 +1,13 @@
+<div class="add-olympian">
+  <div class="add-section">
+    <h1>Add olympian</h1>
+    <button [routerLink]="''" class="return" color="primary" mat-icon-button mat-raised-button>
+      <mat-icon>
+        keyboard_return
+      </mat-icon>
+    </button>
+    <app-olympian-data-form (formData)="onSubmit($event)"></app-olympian-data-form>
+  </div>
+</div>
+
+

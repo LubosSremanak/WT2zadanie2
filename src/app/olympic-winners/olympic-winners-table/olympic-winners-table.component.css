@@ -1,0 +1,34 @@
+#olympians-table {
+  width: 50vw;
+  max-width: 60vw;
+  height: auto;
+
+}
+
+#olympians-table td {
+
+}
+
+.row {
+
+}
+
+.icon:hover {
+  cursor: pointer;
+}
+
+tr.detail-row {
+  height: 0;
+}
+
+.element-row td {
+  border-bottom-width: 0;
+}
+
+tr.element-row:not(.expanded-row):hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.table-container {
+}
